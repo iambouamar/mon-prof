@@ -1,0 +1,26 @@
+{
+  "name": "mon-prof",
+  "version": "1.0.0",
+  "description": "Contacter un prof à proximité",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iambouamar/mon-prof.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iambouamar/mon-prof/issues"
+  },
+  "homepage": "https://github.com/iambouamar/mon-prof#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  }
+}
