@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/iambouamar/mon-prof#readme",
   "dependencies": {
-    "express": "^4.16.2"
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mongoose": "^4.13.1"
   },
   "devDependencies": {
     "nodemon": "^1.12.1"
