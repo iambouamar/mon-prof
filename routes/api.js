@@ -17,7 +17,10 @@ router.put('/profs/:id', function(req, res, next) {
 });
 
 router.delete('/profs/:id', function(req, res, next) {
-    res.send({type: 'DELETE'});
+    console.log(req.params.id);
+    Prof.findByIdAndRemove({_id: req.params.id}).then(function(prof) {
+        res.send(prof);
+    });
 });
 
 module.exports = router;
