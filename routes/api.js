@@ -13,11 +13,14 @@ router.post('/profs', function(req, res, next) {
 });
 
 router.put('/profs/:id', function(req, res, next) {
-    res.send({type: 'PUT'});
+    Prof.findByIdAndUpdate({_id: req.params.id}, req.body).then(function(){
+        Prof.findOne({_id: req.params.id}).then(function(prof){
+            res.send(prof);
+        });
+    });
 });
 
 router.delete('/profs/:id', function(req, res, next) {
-    console.log(req.params.id);
     Prof.findByIdAndRemove({_id: req.params.id}).then(function(prof) {
         res.send(prof);
     });
