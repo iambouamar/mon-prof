@@ -10,7 +10,9 @@ mongoose.Promise = global.Promise;
 
 app.use(bodyParser.json());
 app.use('/api', routes);
-
+app.use(function(err, req, res, next) {
+    res.send({error: err.message});
+});
 
 app.listen(process.env.port || 4000, function() {
     console.log('Server is listening...');
