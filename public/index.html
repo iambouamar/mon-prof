@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Profs</title>
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+        <link href="/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+
+        <h1 class="title">Cours de soutien - Profs REST API</h1>
+        <div id="homepage">
+            <h1>Profs à proximité</h1>
+            <div id="profs"></div>
+        </div>
+
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+        <script src="https://unpkg.com/react@15/dist/react.js"></script>
+        <script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+
+        <!-- Create React Component -->
+        <script type="text/babel">
+        var Profs = React.createClass({
+            getInitialState: function(){
+                return({
+                    profs: []
+                });
+            },
+            render: function(){
+                var profs = this.state.profs;
+                profs = profs.map(function(prof, index){
+                    return(
+                        <li key={index}>
+                            <span className={prof.obj.disponibe}></span>
+                            <span className="nom">{prof.obj.nom}</span>
+                            <span className="matiere">{prof.obj.matiere}</span>
+                            <span className="dist">{Math.floor(prof.dis / 1000)} km</span>
+                        </li>
+                    );
+                });
+                return(
+                    <div id="prof-container">
+                        <form id="search" onSubmit={this.handleSubmit}>
+                            <label>Entrer votre Latitude:</label>
+                            <input type="text" ref="lat" placeholder="latitude" required />
+                            <label>Entrer votre Longitude:</label>
+                            <input type="text" ref="lng" placeholder="longitude" required />
+                            <input type="submit" value="Trouver Des Profs" />
+                        </form>
+                        <ul>{profs}</ul>
+                    </div>
+                );
+            },
+            handleSubmit: function(e){
+                e.preventDefault();
+                var lng = this.refs.lng.value;
+                var lat = this.refs.lat.value;
+
+                fetch('/api/profs?lng=' + lng + '&lat=' + lat).then(function(data){
+                    return data.json();
+                }).then( json => {
+                    this.setState({
+                        profs: json
+                    });
+                    console.log(json);
+                });
+            }
+        });
+        ReactDOM.render(<Profs />, document.getElementById('profs'));
+        </script>
+
+
+    </body>
+</html>
